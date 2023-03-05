@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using WebApp.DbModels;
+using Microsoft.Extensions.Configuration;
+
+
 namespace WebApp
 {
     public class Program
@@ -8,6 +13,10 @@ namespace WebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            var connectionString = builder.Configuration.GetConnectionString("inventory");
+            builder.Services.AddDbContext<InventoryDbContext>(options =>
+                options.UseSqlServer(connectionString)
+            );
 
             var app = builder.Build();
 
