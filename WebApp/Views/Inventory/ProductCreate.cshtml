@@ -34,7 +34,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <button id="submit-btn" type="submit" class="btn btn-primary">
+                <button id="submit-btn" type="submit" class="btn btn-success">
                     submit
                 </button>
             </div>
@@ -54,15 +54,61 @@
             jQuery.validator.unobtrusive.parse("#GenericForm");
         });
         function OnBegin() {
-            alert("Form Begin");
+            $('#submit-btn').prop('disabled',true);
+            $('#submit-btn').html('<div class="spinner-border text-danger bg" role="status"><span class="sr-only"></span></div>');
+            Command: toastr["info"]("Please Wait!")
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
         }
 
         function OnSuccess() {
-            alert("Form Success");
+            $('#submit-btn').prop('disabled',false);
+            $('#submit-btn').html('Submit');
+            Swal.fire(
+                'Good job!',
+                'Product Created Successfully!',
+                'success'
+            );
+
         }
 
         function OnFailure() {
-            alert("Form Failed");
+            $('#submit-btn').prop('disabled', false);
+            $('#submit-btn').html('submit');
+
+            Command: toastr["error"]("Something went wrong!")
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
         }
     </script>
 }
