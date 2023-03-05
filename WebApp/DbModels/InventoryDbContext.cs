@@ -20,6 +20,6 @@ namespace WebApp.DbModels
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("inventory"));
         }
 
-        public DbSet<Product> MyProperty { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
