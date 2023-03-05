@@ -10,7 +10,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form id="GenericForm" method="post" asp-action="ProductCreate" asp-controller="Inventory">
+        <form id="GenericForm" method="post" asp-action="ProductCreate" asp-controller="Inventory"
+              data-ajax="true" data-ajax-begin="OnBegin" data-ajax-success="OnSuccess" data-ajax-failure="OnFailure">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -33,8 +34,8 @@
                 </label>
             </div>
             <div class="form-group">
-                <button id="submit-btn" type="submit"  class="btn btn-primary" >
-                submit 
+                <button id="submit-btn" type="submit" class="btn btn-primary">
+                    submit
                 </button>
             </div>
         </form>
@@ -48,4 +49,20 @@
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery.validator.unobtrusive.parse("#GenericForm");
+        });
+        function OnBegin() {
+            alert("Form Begin");
+        }
+
+        function OnSuccess() {
+            alert("Form Success");
+        }
+
+        function OnFailure() {
+            alert("Form Failed");
+        }
+    </script>
 }
